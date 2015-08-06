@@ -8,7 +8,6 @@ a {
   text-decoration: none;
 }
 
-
 #GoogleMaps { 
   height: 100%; 
   width: 100%; 
@@ -93,17 +92,11 @@ a {
   background: #afdefa;
   color: #47a3da;
 }
-/* end of sidebar styling */
-
-/* Vertical menu that slides from the left or right */
 
 .showSidebar {
   right: 0px;
 }
 
-/* Transitions */
-
-/* Example media queries */
 @media screen and (max-height: 26.375em){
 
   .sidebar {
