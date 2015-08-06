@@ -1,42 +1,20 @@
 /* app css stylesheet */
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+body {
+  font-family: Open Sans;
 }
 
-.menu:before {
-  content: "[";
+a {
+  text-decoration: none;
 }
 
-.menu:after {
-  content: "]";
-}
-
-.menu > li {
-  display: inline;
-}
-
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
-}
-
-.menu > li:nth-child(1):before {
-  content: "";
-  padding: 0;
-}
-
-/* New css */
 
 #GoogleMaps { 
   height: 100%; 
   width: 100%; 
   position:absolute; 
   top: 0; 
-  left: 0; 
+  right: 0; 
   z-index: 0; /* layer 0 (background) */
 }
  
@@ -44,10 +22,94 @@
   position: relative; 
   z-index: 1; /* layer 1 (foreground) */
   width: 300px;
-  margin: 60px auto 0;
+  margin: auto;
   padding: 10px;
-  background: grey;
+  background: #47a3da;
   height: auto;
-  opacity: .95;
+  opacity: .90;
   color: white;
+}
+
+#Container input {
+  color: black;
+}
+
+#PageTitle {
+  text-align: center;
+  position: relative; 
+  z-index: 1; /* layer 1 (foreground) */
+  width: 300px;
+  margin: auto;
+  height: auto;
+  opacity: .90;
+  color: #afdefa;
+  font-size: 1.9em;
+  padding: 10px;
+  font-weight: 300;
+  background: #0d77b6;
+}
+
+#Search {
+  text-align: center;
+}
+
+/* sidebar styling */
+.sidebar {
+  background: #47a3da;
+  position: fixed;
+  width: 240px;
+  height: 100%;
+  top: 0;
+  z-index: 1; /* layer 1 (foreground) */
+  right: -240px;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+
+}
+
+.sidebar h3 {
+  color: #afdefa;
+  font-size: 1.9em;
+  padding: 10px;
+  margin: 0;
+  font-weight: 300;
+  background: #0d77b6;
+}
+
+.sidebar a {
+  display: block;
+  color: #fff;
+  font-weight: 300;
+  border-bottom: 1px solid #258ecd;
+  padding: 0.8em;
+}
+
+.sidebar a:hover {
+  background: #258ecd;
+}
+
+.sidebar a:active {
+  background: #afdefa;
+  color: #47a3da;
+}
+/* end of sidebar styling */
+
+/* Vertical menu that slides from the left or right */
+
+.showSidebar {
+  right: 0px;
+}
+
+/* Transitions */
+
+/* Example media queries */
+@media screen and (max-height: 26.375em){
+
+  .sidebar {
+    font-size: 90%;
+    width: 190px;
+    right: -190px;
+  }
+
 }
