@@ -40,14 +40,14 @@
   z-index: 0; /* layer 0 (background) */
 }
  
-#PageTitle { 
+#Container { 
   position: relative; 
   z-index: 1; /* layer 1 (foreground) */
   width: 300px;
   margin: 60px auto 0;
   padding: 10px;
-  background: black;
+  background: grey;
   height: auto;
-  opacity: .45; /* Set the opacity for a slightly transparent Google Form */ 
+  opacity: .95;
   color: white;
 }
