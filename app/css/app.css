@@ -77,6 +77,27 @@ a {
 }
 
 .sidebar a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.sidebar a:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+.sidebar a:active {
+  text-decoration: none;
+  color: #fff;
+}
+
+.sidebar a:visited {
+  text-decoration: none;
+  color: #fff;
+}
+
+.sidebar a:link {
+  text-decoration: none;
   color: #fff;
 }
 
@@ -112,4 +133,71 @@ a {
     right: -190px;
   }
 
+}
+
+/* topbar styling */
+.topbar {
+  position: fixed;
+  height: 30px;
+  z-index: 1; /* layer 1 (foreground) */
+  top: -50px;
+  right: 260px;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  background: #0d77b6;
+  color: #afdefa;
+  padding: 2px;
+  font-size: 1em;
+  margin: 0;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.topbar option {
+      background: white;
+      color: black;
+
+}
+
+.topbar option:disabled {
+    text-decoration: none;
+}
+
+.showTopbar {
+  top: 0px;
+}
+
+
+
+.venue-details {
+  z-index: 1;
+}
+
+.modal-header {
+  background: #0d77b6 !important;
+  color: #afdefa !important;
+  padding: 5px !important;
+  font-size: 1em !important;
+  margin: 0 !important;
+  border-radius: 0px !important;
+  
+}
+
+.modal-header h4 {
+  color: #afdefa !important;
+  font-size: 1.9em !important;
+  padding: 10px !important;
+  margin: 0 !important;
+  background: #0d77b6 !important;
+  font-weight: 300 !important;
+}
+
+.modal-body {
+  background: #47a3da !important;
+  display: block !important;
+  border-bottom: 1px solid #258ecd !important;
+  padding: 0.8em !important;
+  font-weight: 300 !important;
+  color: white !important;
 }
