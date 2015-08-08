@@ -60,16 +60,14 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div id="PageTitle">
-                              <strong>Venuetrack</strong>: v<span app-version></span><br/>{{venues.length}} total venues!
+                      <div id="top-container" class="top-container">
+                        <div id="page-title" class="page-title">
+                          <logo><strong>Venuetrack</strong>: v<span app-version></span></logo><br/>{{venues.length}} total venues!
                         </div>
-
-                        <div id="Search">                            
-                                <input ng-model="query" id="show-sidebar" placeholder="Search for venues!">
+                        <div id="search" class="search">                            
+                          <input ng-model="query" id="show-sidebar" placeholder="Search for venues!">
                         </div>
-
+                      </div>
                         <select ng-model="sort" id="topbar" class="topbar">
                           <option value="orderby" disabled="disabled">Order By:</option>
                           <option value="name">Name</option>
@@ -80,8 +78,6 @@
                         <div id="bottombar" class = "bottombar"> 
                           <div ng-view></div>
                         </div>
-                    </div>
-                </div>
             </div>
         </div>
         <!-- /#page-content-wrapper -->

@@ -17,48 +17,43 @@ a {
   z-index: 0; /* layer 0 (background) */
 }
  
-#Search { 
-  position: fixed; 
+
+.top-container{
+  position: fixed;
   z-index: 1; /* layer 1 (foreground) */
   width: 300px;
   margin: auto;
-  padding: 10px;
   background: #47a3da;
-  height: auto;
   opacity: .90;
-  color: white;
-  text-align: center;
-  top: 100px;
+  height: auto;
   left: 0;
   right: 0;
 }
 
-#Search input {
+.search { 
+  color: white;
+  padding: 10px;
+  text-align: center;
+  display:block;
+}
+
+.search input {
   color: black;
   padding: 3px;
 }
 
-#PageTitle {
+.page-title {
   text-align: center;
-  position: fixed; 
-  z-index: 1; /* layer 1 (foreground) */
-  width: 300px;
-  margin: auto;
-  height: 100px;
-  top: 0;
-  left: 0;
-  right: 0;
-  opacity: .90;
   color: #afdefa;
-  font-size: 1.9em;
   padding: 10px;
   font-weight: 300;
   background: #0d77b6;
+  font-size: 1.3em;  
 }
 
-#Search {
+.page-title logo {
+    font-size: 1.3em;
 }
-
 
 .sidebar-nav .info {
   font-size: 0.8em;
@@ -174,12 +169,6 @@ a {
     list-style: none;
 }
 
-.sidebar-nav li {
-    display: block;
-    text-decoration: none;
-    color: white;
-}
-
 .sidebar a {
   text-decoration: none;
   color: #fff;
@@ -188,16 +177,6 @@ a {
 .sidebar-nav a:hover, .sidebar-nav a:active, .sidebar-nav a:visited, .sidebar-nav a:link {
   text-decoration: none;
   color: #fff;
-}
-
-.sidebar-nav li:hover {
-    color: #fff;
-    background: rgba(255,255,255,0.2);
-}
-
-.sidebar-nav li:active,
-.sidebar-nav li:focus {
-    text-decoration: none;
 }
 
 .sidebar-nav > .sidebar-brand {
@@ -258,11 +237,27 @@ a {
   transition: all 0.3s ease;
   background: #47a3da;
   color: white;
-  padding: 2px;
-  font-size: 1em;
-  
+  font-size: 1em;  
+  opacity: 0.9;
+}
+
+.bottombar h4 {
+  color: #afdefa;
+  font-size: 1.6em;
+  padding: 10px;
+  margin: 0;
+  background: #0d77b6;
+  font-weight: 300;
+  text-align: center;
+}
+
+.bottombar .venue-info {
+  display: block;
+  padding: 0.8em;
+  font-weight: 300;
+  color: white;
 }
 
 .showBottombar {
-  bottom: 0px;
+  bottom: 100px;
 }
