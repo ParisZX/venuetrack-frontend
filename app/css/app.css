@@ -52,87 +52,13 @@ a {
   text-align: center;
 }
 
-/* sidebar styling */
-.sidebar {
-  background: #47a3da;
-  position: fixed;
-  width: 240px;
-  height: 100%;
-  top: 0;
-  z-index: 1; /* layer 1 (foreground) */
-  right: -240px;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-  opacity: .90;
-}
 
-.sidebar h3 {
-  color: #afdefa;
-  font-size: 1.9em;
-  padding: 10px;
-  margin: 0;
-  background: #0d77b6;
-  font-weight: 300;
-}
-
-.sidebar a {
-  text-decoration: none;
-  color: #fff;
-}
-
-.sidebar a:hover {
-  text-decoration: none;
-  color: #fff;
-}
-
-.sidebar a:active {
-  text-decoration: none;
-  color: #fff;
-}
-
-.sidebar a:visited {
-  text-decoration: none;
-  color: #fff;
-}
-
-.sidebar a:link {
-  text-decoration: none;
-  color: #fff;
-}
-
-.sidebar .venue {
-  display: block;
-  border-bottom: 1px solid #258ecd;
-  padding: 0.8em;
-  font-weight: 300;
-  color: white;
-}
-
-.sidebar .info {
+.sidebar-nav .info {
   font-size: 0.8em;
 }
 
-.sidebar .venue:hover {
-  background: #258ecd;
-}
-
-.sidebar .venue:active {
-  background: #afdefa;
-}
-
-.showSidebar {
-  right: 0px;
-}
-
-@media screen and (max-height: 26.375em){
-
-  .sidebar {
-    font-size: 90%;
-    width: 190px;
-    right: -190px;
-  }
-
+.sidebar-nav p {
+  margin:0;
 }
 
 /* topbar styling */
@@ -200,4 +126,153 @@ a {
   padding: 0.8em !important;
   font-weight: 300 !important;
   color: white !important;
+}
+
+
+
+/*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Toggle Styles */
+
+#wrapper {
+    padding-right: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-right: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    right: 250px;
+    width: 0;
+    height: 100%;
+    margin-right: -250px;
+    overflow-y: auto;
+    background: #47a3da;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    opacity: .90;
+
+}
+
+#sidebar-wrapper h3 {
+  color: #afdefa;
+  font-size: 1.9em;
+  padding: 10px;
+  margin: 0;
+  background: #0d77b6;
+  font-weight: 300;
+}
+
+#sidebar-wrapper .venue {
+  display: block;
+  border-bottom: 1px solid #258ecd;
+  padding: 0.8em;
+  font-weight: 300;
+  color: white;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.sidebar-nav a:hover, .sidebar-nav a:active, .sidebar-nav a:visited, .sidebar-nav a:link {
+  text-decoration: none;
+  color: #fff;
+}
+
+.sidebar-nav li:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li:active,
+.sidebar-nav li:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-right: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-right: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
 }

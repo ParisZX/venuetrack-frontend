@@ -1,0 +1,60 @@
+<div ng-controller = "VenueListCtrl">
+
+    <map id="GoogleMaps" center="40.6372645,22.9374991" zoom="12">
+      <marker ng-repeat = "venue in venues | filter:query" position="{{venue.lat}},{{venue.lng}}" title="{{venue.name}}"></marker>
+    </map>
+
+    <div id="wrapper" class="toggled">
+  
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav" class="venue">
+                <li>
+                    <h3>Results:</h3>
+                </li>
+                <li ng-repeat="venue in venues | filter:query | orderBy:sort" class="venue"> 
+                  <a href="#/venues/{{venue.name}}">
+                    {{venue.name}} <img ng-repeat="category in venue.categories" src="{{category.icon.prefix}}32{{category.icon.suffix}}"/><br/>
+                    <p class="info">{{venue.location.address}}, {{venue.location.city}}</p>
+                  </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+  
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div id="PageTitle">
+                              <strong>Venuetrack</strong>: v<span app-version></span><br/>{{venues.length}} total venues!
+                        </div>
+
+                        <div id="Container">
+                            
+                            <div id="Search">
+                                <input ng-model="query" id="show-sidebar">
+                            </div>
+                            
+                        </div>
+
+                        <select ng-model="sort" id="topbar" class="topbar">
+                          <option value="orderby" disabled="disabled">Order By:</option>
+                          <option value="name">Name</option>
+                          <option value="location.address">Address</option>
+                          <option value="location.city">City</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+</div>
+
+
+ 

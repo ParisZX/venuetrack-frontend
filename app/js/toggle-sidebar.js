@@ -1,25 +1,28 @@
 'use strict';
 
-// Small script for toggling the sidebar with the results, according to input.
+// Small script for toggling the sidebar with the results, according to input.    
+    setTimeout(function() { // A brief delay is needed for the template to load first.
 
-var sidebar = document.getElementById( 'sidebar' ),
-  showSidebar = document.getElementById( 'showSidebar' ),
-  topbar = document.getElementById( 'topbar' ),
-  body = document.body;
+        var wrapper = document.getElementById( 'wrapper' ),
+        topbar = document.getElementById( 'topbar' ),
+        showSidebar = document.getElementById( 'show-sidebar' ),
+        body = document.body;
 
-showSidebar.oninput = function() {
+        showSidebar.oninput = function() {
   
-  if(sidebar.className.indexOf("showSidebar") == -1) {
-    sidebar.className = sidebar.className + " showSidebar";
-    topbar.className = topbar.className + " showTopbar";  
-  }
-  
-  if(showSidebar.value.length == 0) {
-      sidebar.className = sidebar.className.replace( "showSidebar", ' ' );
-      topbar.className = topbar.className.replace( "showTopbar", ' ' );
-  }
+            console.log("hi there");
 
-  };
+             if(wrapper.className.indexOf("toggled") != -1) {
+                wrapper.className = wrapper.className.replace( "toggled", ' ' );
+                topbar.className = topbar.className + " showTopbar";  
+            }
+          
+            if(showSidebar.value.length == 0) {
+                wrapper.className = wrapper.className + " toggled";
+                topbar.className = topbar.className.replace( "showTopbar", ' ' );
+            }
 
+        };
 
+    }, 100);
 

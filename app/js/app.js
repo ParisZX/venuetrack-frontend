@@ -4,13 +4,22 @@
 var myApp = angular.module('myApp', [
   'ngRoute',
   'myApp.version',
-  'ngMap'
+  'ngMap',
+  'myAppControllers'
 ]);
 
-myApp.controller('VenueListCtrl', ['$scope', '$http', function($scope, $http) {
-  	$http.get('js/data.json').success(function(data) {    
-	    $scope.venues = data;
-	});
-
-  	$scope.sort = 'orderby';
+myApp.config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.
+      when('/venues', {
+        templateUrl: 'partials/venues-list.html',
+        controller: 'VenueListCtrl'
+      }).
+      when('/venues/:venueName', {
+        templateUrl: 'partials/venue-detail.html',
+        controller: 'VenueDetailCtrl'
+      }).
+      otherwise({
+        redirectTo: '/venues'
+      });
 }]);

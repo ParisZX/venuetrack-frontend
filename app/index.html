@@ -22,73 +22,21 @@
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
   <script src="//maps.google.com/maps/api/js"></script>
   <script src="//rawgit.com/allenhwkim/angularjs-google-maps/master/build/scripts/ng-map.min.js"></script>
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
+  
 </head>
 <body>
 
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
-      
-  <div ng-controller = "VenueListCtrl">
-
-    <div id="PageTitle">
-          <strong>Venuetrack</strong>: v<span app-version></span><br/>{{venues.length}} total venues!
-    </div>
-
-    <map id="GoogleMaps" center="40.6372645,22.9374991" zoom="12">
-        <marker ng-repeat = "venue in venues | filter:query" position="{{venue.lat}},{{venue.lng}}" title="{{venue.name}}"></marker>
-    </map>
-
-    <div id="Container" class="container-fluid">
-        
-        <div id="Search">
-            Search: <input ng-model="query" id="showSidebar">
-        </div>
-
-    </div>
-
-      <select ng-model="sort" id="topbar" class="topbar">
-        <option value="orderby" disabled="disabled">Order By:</option>
-        <option value="name">Name</option>
-        <option value="location.address">Address</option>
-        <option value="location.city">City</option>
-      </select>
-
-      <nav class="sidebar" id="sidebar">
-        <h3>Results:</h3>
-        <a href="/venues/{{venue.name}}"  ng-repeat="venue in venues | filter:query | orderBy:sort" class="venue" data-toggle="modal" data-target="#myModal">
-          {{venue.name}} <img ng-repeat="category in venue.categories" src="{{category.icon.prefix}}32{{category.icon.suffix}}"/><br/>
-          <div class="info">{{venue.location.address}}, {{venue.location.city}}</div>
-        </a>
-      </nav>
-
-      <div id="venue-details" class="venue-details">
-      </div>
-
-      <!-- Modal -->
-      <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Venue Header</h4>
-            </div>
-            <div class="modal-body">
-              <p>Venue info.</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-  </div>
+   
+  <div ng-view></div>
 
   <!-- jQuery -->
   <script src="js/jquery.js"></script>
@@ -96,6 +44,7 @@
   <!-- Bootstrap Core JavaScript -->
   <script src="js/bootstrap.min.js"></script>
 
+  <!-- Menu Toggle Script -->
   <script type="text/javascript" src="js/toggle-sidebar.js"></script>
 
 </body>
