@@ -36,7 +36,60 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
    
-  <div ng-view></div>
+  <div ng-controller = "VenueListCtrl">
+
+    <map id="GoogleMaps" center="40.6372645,22.9374991" zoom="12">
+      <marker ng-repeat = "venue in venues | filter:query" position="{{venue.lat}},{{venue.lng}}" title="{{venue.name}}"></marker>
+    </map>
+
+    <div id="wrapper" class="toggled">
+  
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                    <h3>Results:</h3>
+                 
+                  <a href="#/venues/{{venue.name}}"  ng-repeat="venue in venues | filter:query | orderBy:sort" class="venue" onclick="showBottombar();">
+                    {{venue.name}} <img ng-repeat="category in venue.categories" src="{{category.icon.prefix}}32{{category.icon.suffix}}"/><br/>
+                    <p class="info">{{venue.location.address}}, {{venue.location.city}}</p>
+                  </a>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+  
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div id="PageTitle">
+                              <strong>Venuetrack</strong>: v<span app-version></span><br/>{{venues.length}} total venues!
+                        </div>
+
+                        <div id="Search">                            
+                                <input ng-model="query" id="show-sidebar" placeholder="Search for venues!">
+                        </div>
+
+                        <select ng-model="sort" id="topbar" class="topbar">
+                          <option value="orderby" disabled="disabled">Order By:</option>
+                          <option value="name">Name</option>
+                          <option value="location.address">Address</option>
+                          <option value="location.city">City</option>
+                        </select>
+
+                        <div id="bottombar" class = "bottombar"> 
+                          <div ng-view></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+</div>
 
   <!-- jQuery -->
   <script src="js/jquery.js"></script>
@@ -46,6 +99,23 @@
 
   <!-- Menu Toggle Script -->
   <script type="text/javascript" src="js/toggle-sidebar.js"></script>
+  
+  <script>
+
+       function showBottombar() {
+            var bottombar = document.getElementById( 'bottombar' ),
+            body = document.body;
+
+           if(bottombar.className.indexOf("showBottombar") == -1) {
+              bottombar.className = bottombar.className + " showBottombar";  
+          }
+      };
+
+      $('map').click(function () {
+                bottombar.className = bottombar.className.replace( "showBottombar", ' ' );
+      });
+  
+  </script>
 
 </body>
 </html>

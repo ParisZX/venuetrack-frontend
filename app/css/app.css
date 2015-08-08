@@ -17,8 +17,8 @@ a {
   z-index: 0; /* layer 0 (background) */
 }
  
-#Container { 
-  position: relative; 
+#Search { 
+  position: fixed; 
   z-index: 1; /* layer 1 (foreground) */
   width: 300px;
   margin: auto;
@@ -27,19 +27,27 @@ a {
   height: auto;
   opacity: .90;
   color: white;
+  text-align: center;
+  top: 100px;
+  left: 0;
+  right: 0;
 }
 
-#Container input {
+#Search input {
   color: black;
+  padding: 3px;
 }
 
 #PageTitle {
   text-align: center;
-  position: relative; 
+  position: fixed; 
   z-index: 1; /* layer 1 (foreground) */
   width: 300px;
   margin: auto;
-  height: auto;
+  height: 100px;
+  top: 0;
+  left: 0;
+  right: 0;
   opacity: .90;
   color: #afdefa;
   font-size: 1.9em;
@@ -49,7 +57,6 @@ a {
 }
 
 #Search {
-  text-align: center;
 }
 
 
@@ -93,48 +100,6 @@ a {
 .showTopbar {
   top: 0px;
 }
-
-
-
-.venue-details {
-  z-index: 1;
-}
-
-.modal-header {
-  background: #0d77b6 !important;
-  color: #afdefa !important;
-  padding: 5px !important;
-  font-size: 1em !important;
-  margin: 0 !important;
-  border-radius: 0px !important;
-  
-}
-
-.modal-header h4 {
-  color: #afdefa !important;
-  font-size: 1.9em !important;
-  padding: 10px !important;
-  margin: 0 !important;
-  background: #0d77b6 !important;
-  font-weight: 300 !important;
-}
-
-.modal-body {
-  background: #47a3da !important;
-  display: block !important;
-  border-bottom: 1px solid #258ecd !important;
-  padding: 0.8em !important;
-  font-weight: 300 !important;
-  color: white !important;
-}
-
-
-
-/*!
- * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
- */
 
 /* Toggle Styles */
 
@@ -275,4 +240,29 @@ a {
         position: relative;
         margin-right: 0;
     }
+}
+
+
+/* topbar styling */
+.bottombar {
+  position: fixed;
+  height: 300px;
+  width: 600px;
+  left: 0;
+  right: 0;
+  z-index: 1; /* layer 1 (foreground) */
+  bottom: -400px;
+  margin: auto;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  background: #47a3da;
+  color: white;
+  padding: 2px;
+  font-size: 1em;
+  
+}
+
+.showBottombar {
+  bottom: 0px;
 }

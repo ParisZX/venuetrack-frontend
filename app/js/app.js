@@ -11,15 +11,11 @@ var myApp = angular.module('myApp', [
 myApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/venues', {
-        templateUrl: 'partials/venues-list.html',
-        controller: 'VenueListCtrl'
-      }).
       when('/venues/:venueName', {
         templateUrl: 'partials/venue-detail.html',
         controller: 'VenueDetailCtrl'
       }).
       otherwise({
-        redirectTo: '/venues'
+        redirectTo: 'index.html'
       });
 }]);

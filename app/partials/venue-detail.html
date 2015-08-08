@@ -1,1 +1,19 @@
-TBD: detail view for <span>{{venueName}}</span>
+
+
+
+
+<h4>{{venue.name}} <img ng-repeat="category in venue.categories" src="{{category.icon.prefix}}32{{category.icon.suffix}}"/></h4>
+
+<div id="category">Κατηγορία: <span ng-repeat="category in venue.categories"> #{{category.shortName}}</span></div>
+
+<p class="address">{{venue.location.address}}, {{venue.location.postalCode}} {{venue.location.city}}</p>
+
+<p class="stats">Checkins: {{venue.stats.checkinsCount}}, Users: {{venue.stats.usersCount}}, Tips: {{venue.stats.tipsCount}}</p>
+
+<p class="url">Url: {{venue.url}}</p>
+
+<p class="rating">Rating: {{venue.rating}}</p>
+
+<p class="photo">{{venue.photos.groups[0].items[0].prefix}}</p>
+
+<p class="lastUpdated">{{venue.lastUpdated}}</p>
