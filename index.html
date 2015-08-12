@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Static Angular Example</title>
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+	
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/venue.js"></script>
+
+</head>
+<body ng-controller="MainController as main">
+
+<ul class="list-group">
+	<li class="list-group-item" ng-repeat="venue in venues">
+		<venue-details></venue-details>
+	</li>
+</ul>
+
+</body>
+</html>
