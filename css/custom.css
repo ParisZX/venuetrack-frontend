@@ -1,0 +1,34 @@
+body {
+	font-weight: 300;
+}
+
+map {
+  	position:absolute; 
+  	left: 0px;
+  	top: 50px;
+  	right: 0px;
+  	bottom: 0px; 
+  	z-index: 0; /* layer 0 (background) */
+}
+
+.panel  {
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+.panel-default .panel-heading {
+	background-color: #5F4F94;
+	color: white;
+}
+
+.panel-default .panel-body {
+	font-size: 12px;
+}
+
+.navbar .navbar-inverse .navbar-fixed-top {
+	opacity: 0.90;
+}
+
+.panel-heading {
+	padding: 5px 15px;
+}

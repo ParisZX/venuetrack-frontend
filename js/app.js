@@ -1,10 +1,15 @@
 (function() {
-	var myApp = angular.module('myApp',['venue']);
+	var myApp = angular.module('myApp',['ngMap','venue']);
 
 	myApp.controller('MainController', ['$scope', '$http' , 
 		function($scope, $http) {
 
-			$http.get('endpoints?what=venues').success(function(data) {    
+			$scope.venues = [];
+
+			var apiData = 'endpoints?what=venues';
+			var localData = 'data/data.json';
+
+			$http.get(localData).success(function(data) {    
 	    	
 	    	$scope.venues = data;
 	    
