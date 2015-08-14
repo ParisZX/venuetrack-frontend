@@ -32,7 +32,7 @@
 
 </head>
 <body ng-controller="MainController as main">
-	<div id="wrapper" class="toggled">
+	<div id="wrapper">
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 	      <div class="container">
 	        <div class="navbar-header">
@@ -56,6 +56,7 @@
 	    </nav>
 
 		<!-- Sidebar -->
+		<button id="close-sidebar" type="submit" class="btn btn-sm btn-primary btn-close-sidebar"><span class="glyphicon glyphicon-remove"></span></button>
 	    <div id="sidebar-wrapper">
 	    	<div class="sidebar-nav">
 		    	<div ng-repeat="venue in venues | filter:query" class="panel panel-default">
@@ -82,12 +83,21 @@
 	</div>
 
 	<!-- Menu Toggle Script -->
+    
+	<!-- A small JQuery Script got showing/hiding the sidebar -->
     <script>
-    $("#search").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
+		$(document).ready(function(){
+	    $("#search").click(function(){
+	        $("#sidebar-wrapper").show();
+	        $("#close-sidebar").show();
+	    });
+	    $("#close-sidebar").click(function() {
+	    	$("#sidebar-wrapper").hide();
+	    	$("#close-sidebar").hide();
+	    });
+	    
+		});
+	</script>
 
 </body>
 </html>
