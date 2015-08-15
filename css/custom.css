@@ -57,3 +57,7 @@ map {
     background-color: #5f4f94;
     display: none;
 }
+
+marker {
+	background-image: "https://ss1.4sqi.net/img/pin-squircle-blue-bd58a9a123ca8fb3a84f4ee889b6b781.png";
+}

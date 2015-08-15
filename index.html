@@ -72,7 +72,7 @@
 
 		<map center="40.6372645,22.9374991" zoom="12">
 		  	<div ng-repeat="venue in venues">
-				<marker id="{{venue.name}}" position="{{venue.lat}},{{venue.lng}}" title="{{venue.name}}" on-click="showInfoWindow(event, '{{venue.name}}-info'	)"></marker>
+				<marker id="{{venue.name}}" position="{{venue.lat}},{{venue.lng}}" icon="{{venue.categories[0].icon.prefix}}bg_32{{venue.categories[0].icon.suffix}}" title="{{venue.name}}" on-click="showInfoWindow(event, '{{venue.name}}-info'	)"></marker>
 			  	<info-window id="{{venue.name}}-info" visible-on-marker="{{venue.name}}">
 			    	<div ng-non-bindable="">
 				    	<venue-details></venue-details>
