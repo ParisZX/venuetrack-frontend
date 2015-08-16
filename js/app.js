@@ -1,5 +1,5 @@
 (function() {
-	var myApp = angular.module('myApp',['ngMap','venue']);
+	var myApp = angular.module('myApp',['ngMap','ngRoute','venue','sidebar']);
 
 	myApp.controller('MainController', ['$scope', '$http' , 
 		
@@ -7,34 +7,33 @@
 
 			var apiData = 'endpoints?what=venues';
 			var localData = 'data/data.json';
-			var venues = [];
+			$scope.venues = [];
 			$http.get(localData).success(function(data) {    
-	    		venues = data;
+	    		$scope.venues = data;
 	    	});
 
 			var map;
 	  	
 		  	$scope.$on('mapInitialized', function(evt, evtMap) {
 		    	map = evtMap;
-		      	for (var i=0;i<venues.length;i++) {
-	      		  	var latLng = {lat: venues[i].lat, lng: venues[i].lng};
-		      		var marker = new google.maps.Marker({
-		      			title: venues[i].name,
-		      			position: latLng,
-		      			map: map,
-		      			icon: venues[i].categories[0].icon.prefix+"bg_32"+venues[i].categories[0].icon.suffix
-		      		});
-		      	}
-
-		      	var contentString ='<venue-details></venue-details>';
-
-
-				 
-			  	
-				
-			   	
 		    });
 
-	}]);
+
+		    $scope.focusTo = function(venue) {
+		      		latLng = {
+		      			lat: venue.lat,
+		      			lng: venue.lng
+		      		};
+			      	map.panTo(latLng);
+		      	    map.setZoom(18);
+			}
+
+	}]).
+	config(['$routeProvider', function($routeProvider) {
+  		$routeProvider.
+			when("/venues", {templateUrl: "partials/venues.html"}).
+			when("/venues/:id", {templateUrl: "partials/venue.html", controller: "VenueController"}).
+			otherwise({redirectTo: '/venues'});
+	}]);;
 
 })();
