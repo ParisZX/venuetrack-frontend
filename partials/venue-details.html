@@ -1,4 +1,4 @@
-<h3>{{venue.name}}</h3>
+<h3>{{activeVenue.name}}</h3>
 <section>
 	<ul class="nav nav-tabs">
 		<li ng-class="{active:panel.isActive(1)}"><a href ng-click="panel.setTab(1)">Stats</a></li>
@@ -6,13 +6,13 @@
 	</ul>
 	<div class="panel" ng-show="panel.isActive(1)">
 		<h4>Stats</h4>
-		<p><span ng-show="venue.location.address">{{venue.location.address}},</span> {{venue.location.postalCode}} {{venue.location.city}}</p>
-		<p>{{venue.photos.groups[0].items[0].prefix+'width160'+venue.photos.groups[0].items[0].suffix}}</p>
+		<p><span ng-show="activeVenue.location.address">{{activeVenue.location.address}},</span> {{activeVenue.location.postalCode}} {{activeVenue.location.city}}</p>
+		<p>{{activeVenue.photos.groups[0].items[0].prefix+'width160'+activeVenue.photos.groups[0].items[0].suffix}}</p>
 	</div>
 	<div class="panel" ng-show="panel.isActive(2)">
 		<h4>Tips</h4>
 		
-			Placeholder text for the tip. 					Placeholder text for the tip. 					Placeholder text for the tip. 
+			Placeholder text for the tip. Placeholder text for the tip. Placeholder text for the tip. 
 			<cite>-Paris Lagg</cite> 
 	</div>
 </section>

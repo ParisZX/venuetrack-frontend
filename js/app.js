@@ -1,16 +1,11 @@
 (function() {
-	var myApp = angular.module('myApp',['ngMap','ngRoute','venue','sidebar']);
+	var myApp = angular.module('myApp',['ngMap','ngRoute','venuetrackServices','venueDetails','sidebar','navbar']);
 
-	myApp.controller('MainController', ['$scope', '$http' , 
+	myApp.controller('MainController', ['$scope', 'venuesAPI' , 
 		
-		function($scope, $http) {
+		function($scope, venuesAPI) {
 
-			var apiData = 'endpoints?what=venues';
-			var localData = 'data/data.json';
-			$scope.venues = [];
-			$http.get(localData).success(function(data) {    
-	    		$scope.venues = data;
-	    	});
+			$scope.venues = venuesAPI.query();
 
 			var map;
 	  	
@@ -18,21 +13,25 @@
 		    	map = evtMap;
 		    });
 
+	}]);
 
-		    $scope.focusTo = function(venue) {
-		      		latLng = {
-		      			lat: venue.lat,
-		      			lng: venue.lng
-		      		};
-			      	map.panTo(latLng);
-		      	    map.setZoom(18);
-			}
+	myApp.controller('VenueDetailCtrl', ['$scope', '$routeParams', 'venuesAPI', function($scope, $routeParams, venuesAPI) {
+  		
+  		$scope.activeVenue = venuesAPI.get({id: $routeParams.id}, function(venue) {
+    	  		
+  		});
 
-	}]).
-	config(['$routeProvider', function($routeProvider) {
+}]);
+
+	myApp.config(['$routeProvider', function($routeProvider) {
   		$routeProvider.
-			when("/venues", {templateUrl: "partials/venues.html"}).
-			when("/venues/:id", {templateUrl: "partials/venue.html", controller: "VenueController"}).
+			when("/venues", {
+				templateUrl: 'partials/venues.html'
+			}).
+			when("/venues/:id", {
+				templateUrl: 'partials/venue.html',
+				controller: 'VenueDetailCtrl'
+			}).
 			otherwise({redirectTo: '/venues'});
 	}]);;
 

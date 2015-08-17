@@ -1,6 +1,6 @@
 (function() {
 
-	var myApp = angular.module('venue', []);
+	var myApp = angular.module('venueDetails', []);
 
 	myApp.directive('venueDetails', function(){
 

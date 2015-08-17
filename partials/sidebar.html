@@ -1,4 +1,5 @@
 <!-- Sidebar -->
+<button id="close-sidebar" type="submit" class="btn btn-sm btn-primary btn-close-sidebar"><span class="glyphicon glyphicon-remove"></span></button>
 <div id="sidebar-wrapper">
 	<div class="sidebar-nav">
     	<div ng-repeat="venue in venues | filter:query" class="panel panel-default">
@@ -10,3 +11,16 @@
 	</div>
 </div>
 <!-- /#sidebar-wrapper -->
+
+
+<!-- A small JQuery Script got showing/hiding the sidebar -->
+<script>
+	$(document).ready(function(){
+
+    $("#close-sidebar").click(function(){
+    	$("#sidebar-wrapper").hide();
+    	$("#close-sidebar").hide();
+    });
+    
+	});
+</script>
