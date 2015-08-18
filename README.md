@@ -15,3 +15,5 @@ Things to be done:
 -For each venue, various data are missing (address, url etc). Remove what is not there.
 
 -Add css to venues for when they are hovered and active.
+
+-Change Foursquare icons with glyphicons.

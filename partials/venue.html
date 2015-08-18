@@ -1,10 +1,1 @@
-<map center="{{activeVenue.lat}},{{activeVenue.lng}}" zoom="18">
-	<div ng-repeat="venue in venues">
-		<marker position="{{venue.lat}},{{venue.lng}}" icon="{{venue.categories[0].icon.prefix}}bg_32{{venue.categories[0].icon.suffix}}" title="{{venue.name}}"></marker>
-	</div>
-	<info-window id="{{activeVenue.id}}-info" position="{{activeVenue.lat}},{{activeVenue.lng}}" visible="true">
-	    	<div ng-non-bindable="">
-		    	<venue-details></venue-details>
-	   		</div>
-	</info-window>
-</map>
+{{focus()}}
