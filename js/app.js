@@ -29,7 +29,7 @@
 
 
 	      			var contentString = '<h3>'+venues[i].name+'</h3>'+
-										'<section ng-controller="PanelCtrl as panel">'+
+										'<section>'+
 											'<ul class="nav nav-tabs">'+
 												'<li ng-class="{active:panel.isActive(1)}"><a href ng-click="panel.setTab(1)">Stats</a></li>'+
 												'<li ng-class="{active:panel.isActive(2)}"><a href ng-click="panel.setTab(2)">Tips</a></li>	'+
@@ -61,6 +61,9 @@
 					})(markers[i], i));
 				}
 
+				$scope.markers = markers;
+				$scope.infoWindows = infoWindows;
+
 		    });
 
 	}]);
@@ -71,6 +74,17 @@
     	  		
   		});
 
+  		var point;
+
+  		for (var i=0;i<$scope.markers.length;i++) {
+	    
+  			if($scope.markers[i].id.localeCompare($scope.activeVenue.id))
+  				break;
+
+		}
+
+	    $scope.infoWindows[i].open($scope.map, $scope.markers[i]);
+
 	    $scope.focus = function() {
 		      		latLng = {
 		      			lat: $scope.activeVenue.lat,
@@ -78,6 +92,7 @@
 		      		};
 			      	$scope.map.panTo(latLng);
 		      	    $scope.map.setZoom(18);
+
 					
 		}
 
