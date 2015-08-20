@@ -3,7 +3,7 @@
 <div id="sidebar-wrapper">
 	<div class="sidebar-nav">
     	<div ng-repeat="venue in venues | filter:query" class="panel panel-default">
-			<div class="panel-heading"><a  ng-href="#/venues/{{venue.id}}">{{venue.name}}</a><img ng-repeat="category in venue.categories" src="{{category.icon.prefix}}32{{category.icon.suffix}}"/></div>
+			<div class="panel-heading"><a  ng-href="#/venues/{{venue.id}}">{{venue.name}}</a></div>
 		  	<div class="panel-body">
                 {{venue.location.address}}, {{venue.location.city}}			  	
 			</div>

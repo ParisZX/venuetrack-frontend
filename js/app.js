@@ -1,125 +1,143 @@
-(function() {
-	var myApp = angular.module('myApp',['ngMap','ngRoute','venuetrackServices','sidebar','navbar']);
+	var myApp = angular.module('myApp',['ngRoute','venuetrackServices','sidebar','navbar']);
 
-	myApp.controller('MainController', ['$scope', 'venuesAPI' , 
+	myApp.controller('MainController', ['$scope', '$routeParams', 'venuesAPI' , 
 		
-		function($scope, venuesAPI) {
+		function($scope, $routeParams, venuesAPI) {
 			
-	  		var venues = venuesAPI.query();
-	  		var markers = [];
-			var infoWindows = [];
+	    	console.log('im MainController!');
 
-			$scope.venues = venues;
+			// var venues = []; var markers = []; var infoWindows = []; var map;
 
-		  	$scope.$on('mapInitialized', function(evt, evtMap) {
-		    	$scope.map = evtMap;
+	  		$scope.venues = venuesAPI.query();
 
-		    	for (var i=0;i<venues.length;i++) {
-	      		  	var latLng = {lat: venues[i].lat, lng: venues[i].lng};
-		      		
-		      		var marker = new google.maps.Marker({
-		      			id: venues[i].id,
-		      			title: venues[i].name,
-		      			position: latLng,
-		      			map: $scope.map,
-		      			icon: venues[i].categories[0].icon.prefix+"bg_32"+venues[i].categories[0].icon.suffix
-		      		});
+    	    $scope.markers = [];
 
-		      		markers.push(marker);
+	  		thessCenter = {lat: 40.6323456, lng: 22.9408366};
 
-
-	      			var contentString = '<h3>'+venues[i].name+'</h3>'+
-										'<section>'+
-											'<ul class="nav nav-tabs">'+
-												'<li ng-class="{active:panel.isActive(1)}"><a href ng-click="panel.setTab(1)">Stats</a></li>'+
-												'<li ng-class="{active:panel.isActive(2)}"><a href ng-click="panel.setTab(2)">Tips</a></li>	'+
-											'</ul>'+
-											'<div class="panel" ng-show="panel.isActive(1)">'+
-												'<h4>Stats</h4>'+
-												'<p><span ng-show="'+venues[i].location.address+'">'+venues[i].location.address+',</span> '+venues[i].location.postalCode+' '+venues[i].location.city+'</p>'+
-											'</div>'+
-											'<div class="panel" ng-show="panel.isActive(2)">'+
-												'<h4>Tips</h4>'+
-													'Placeholder text for the tip. Placeholder text for the tip. Placeholder text for the tip. '+
-													'<cite>-Paris Lagg</cite>'+
-											'</div>'+
-										'</section>';	
-						
-					var infoWindow = new google.maps.InfoWindow({
-				    	content: contentString
-					});
-
-		      		infoWindows.push(infoWindow);
-		     	}
-
-		     	for (var i=0;i<markers.length;i++) {
-	      		
-			      	google.maps.event.addListener(markers[i], 'click', (function(marker, i) {
-					  return function() {
-					    infoWindows[i].open($scope.map, markers[i]);
-					  }
-					})(markers[i], i));
-				}
-
-				$scope.markers = markers;
-				$scope.infoWindows = infoWindows;
-
-		    });
-
-	}]);
-
-	myApp.controller('VenueDetailCtrl', ['$scope', '$routeParams', 'venuesAPI', function($scope, $routeParams, venuesAPI) {
+		  	$scope.map = new google.maps.Map(document.getElementById('map'), {
+			    	zoom: 13,
+			    	center: thessCenter
+		  	});
   		
-  		$scope.activeVenue = venuesAPI.get({id: $routeParams.id}, function(venue) {
-    	  		
-  		});
+			$scope.drawMarkers = function() {
+			
+			    var createMarker = function (info) {
+	        		
+				  	var infoWindow = new google.maps.InfoWindow();
 
-  		var point;
+			        var marker = new google.maps.Marker({
+			            map: $scope.map,
+			            position: new google.maps.LatLng(info.lat, info.lng),
+			            id: info.id,
+			            title: info.name,
+			            icon: info.categories[0].icon.prefix+"bg_32"+info.categories[0].icon.suffix
+			        });
+			        
+			        marker.content = '<div class="infoWindowContent">' + info.location.address + '</div>';
+			        
+			        google.maps.event.addListener(marker, 'click', function(){
+			            infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
+			            infoWindow.open($scope.map, marker);
+			        });
+			        
+			        $scope.markers.push(marker);
+			        
+			    }  
+		    
+			    for (i = 0; i < $scope.venues.length; i++){
+			        createMarker($scope.venues[i]);
+			    }
 
-  		for (var i=0;i<$scope.markers.length;i++) {
-	    
-  			if($scope.markers[i].id.localeCompare($scope.activeVenue.id))
-  				break;
+			}
+  	
+  	}]);
 
-		}
 
-	    $scope.infoWindows[i].open($scope.map, $scope.markers[i]);
+	myApp.controller('VenuesController', ['$scope', 
 
-	    $scope.focus = function() {
-		      		latLng = {
-		      			lat: $scope.activeVenue.lat,
-		      			lng: $scope.activeVenue.lng
-		      		};
-			      	$scope.map.panTo(latLng);
-		      	    $scope.map.setZoom(18);
+		function($scope) {
+		  
+	    	console.log('im VenuesController!');
+    
+    		if($scope.markers.length==0)
+    			$scope.drawMarkers();
 
-					
-		}
+			console.log($scope.markers.length);
 
 	}]);
 	
-	myApp.controller('PanelCtrl' , function() {
-				this.tab = 1;
+	myApp.controller('VenueController', ['$scope', '$routeParams',
 
-				this.isActive = function(check) {
-					return this.tab === check;
-				};
+		function($scope,$routeParams) {
 
-				this.setTab = function(selected) {
-					this.tab = selected;
-				};
-	});			
+			console.log('im VenueController, called by href');
+			console.log('The http parameter is '+ $routeParams.id);
+			
+			if($scope.markers.length==0)
+    			$scope.drawMarkers();
+
+			var findActive = function(){
+
+				for (i=0;i<$scope.venues.length;i++) {
+					if($scope.venues[i].id==$routeParams.id) {
+						return $scope.venues[i];
+					}
+				}
+				return false;
+			}
+
+			$scope.activeVenue = findActive();
+
+			console.log('The activeVenue id is ' + $scope.activeVenue.id + ' and the name of the venue is ' + $scope.activeVenue.name);
+			console.log('The activeVenue coordinates are ' + $scope.activeVenue.lat + ',' + $scope.activeVenue.lng);
+
+			latLng = {
+      			lat: $scope.activeVenue.lat,
+      			lng: $scope.activeVenue.lng
+      		};
+
+      		console.log('The center of the map SHOULD BE ' + latLng.lat + ',' + latLng.lng);
+
+	      	$scope.map.panTo(latLng);
+      	    $scope.map.setZoom(18);
+
+      	    console.log('The center of the map is ' + $scope.map.center.lat() + ',' + $scope.map.center.lng());
+
+      	    var findActiveMarker = function(){
+
+				for (i=0;i<$scope.markers.length;i++) {
+
+					if($scope.markers[i].id==$scope.activeVenue.id)
+						return $scope.markers[i];
+				}
+				return false;
+			}
+
+			$scope.activeMarker = findActiveMarker();
+
+		  	var infoWindow = new google.maps.InfoWindow();
+  
+            infoWindow.setContent('<h2>' + $scope.activeMarker.title + '</h2>' + $scope.activeMarker.content);
+
+            infoWindow.open($scope.map, $scope.activeMarker);
+
+			console.log($scope.venues.length + ' venues!');
+
+			console.log($scope.markers.length + ' markers!');
+
+
+	}]);
 
 	myApp.config(['$routeProvider', function($routeProvider) {
   		$routeProvider.
 			when("/venues", {
-				templateUrl: 'partials/venues.html'
+				templateUrl: 'partials/venues.html',
+				controller: 'VenuesController'
 			}).
 			when("/venues/:id", {
 				templateUrl: 'partials/venue.html',
-				controller: 'VenueDetailCtrl'
+				controller: 'VenueController'
 			}).
 			otherwise({redirectTo: '/venues'});
 	}]);;
 
-})();
